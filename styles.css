@@ -2,62 +2,325 @@
 
 :root {
     --body-background: #000;
-    --day-background:#f0f2f5; 
-    --circles:rgba(255, 255, 255, 0.2);
-    --circle-light:rgba(60, 160, 190, 0.4);
-    --bars:#f0f2f5;
-    --bars-light:#1f1f1f;
-    --dark:#000;
-    --light:#fff;
+    --day-background: #f0f2f5;
+    --circles: rgba(255, 255, 255, 0.2);
+    --circle-light: rgba(60, 160, 190, 0.4);
+    --circle-light-2: rgba(60, 160, 190, 0.8);
+    --bars: #f0f2f5;
+    --bars-light: #1f1f1f;
+    --dark: #000;
+    --light: #fff;
+    --shadow: #111;
 }
 
-*{
+* {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
 }
+
 html {
     scroll-behavior: smooth;
 }
 
-body{
+body {
     font-family: 'Exo', sans-serif;
-    color:var(--light);
+    color: var(--light);
 }
 
+.codepen:hover {
+    background: rgb(0, 0, 0);
+    border-color: rgb(0, 0, 0);
+}
 
-.navbar{
-    background:var(--bars);
-    color:var(--dark);
+/*use vw ex- font-size:3vw   for responsive font-size*/
+/*
+    Navbar section
+*/
+section h2 {
+    text-align: center;
+}
+
+.navbar {
+    background: var(--bars-light);
+    color: var(--light);
     border-radius: 0 0 0 40px;
 }
-.navbar-header .icon-bar{
+
+.navbar-header .icon-bar {
     background-color: red;
-    color:red;
+    color: red;
 }
+
+.container-fluid {
+    width: 90%;
+}
+
 /*.navbar-fixed-top{
     position:relative;
 }*/
-.et_pb_text_inner{
-    position:relative;
-    padding-top:80px;
+
+/*
+    section 1/ hero section
+*/
+.et_pb_text_inner {
+    position: relative;
+    padding-top: 50px;
 
 }
-footer{
-    height:fit-content;
-    width:100%;
-    border-radius: 0 40px 0 0;
-    background:var(--bars);
-    text-align: center;
-    color:var(--dark);
+#section1 h1{
+        font-size: 50px ;
 }
-.social-links{
-    position:fixed;
+section {
+    display: block;
+    margin: auto;
+    width: 80%;
+    margin-top: 60px;
+}
+
+/*
+  AUTO GRID
+  Set the minimum item size with `--auto-grid-min-size` and you'll
+  get a fully responsive grid with no media queries.
+*/
+.auto-grid {
+    --auto-grid-min-size: 12rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
+    grid-gap: 1rem;
+}
+
+.auto-grid li {
+    list-style: none;
+    border-radius: 10px;
+    padding: 4rem 1rem;
     text-align: center;
-    background:var(--bars);
-    color:var(--dark);
-    height:fit-content;
-    left:0;
-    bottom:0;
-    width:100%;
+    background: var(--circles);
+    color: var(--light);
+    line-height: 50px;
+}
+
+.auto-grid img {
+    width: 40px;
+    height: 40px;
+}
+
+/*Experience section*/
+/*work experience section*/
+/* - &:nth-child(1) {
+	 grid-area: entry1;
+}
+ - useful timesaver if there is a lengthy list */
+#section3 {
+    width: 80%;
+    display: block;
+    justify-content: center;
+    align-items: center;
+}
+
+.timeline {
+    line-height: 1.5em;
+    font-size: 14px;
+    transition: all 0.4s ease;
+    position: relative;
+    counter-reset: section;
+}
+
+.timeline:before {
+    content: "";
+    width: 10px;
+    height: 100%;
+    background: var(--shadow);
+    position: absolute;
+    top: 0;
+    left: -3.313em;
+    border-radius: 40px 40px;
+}
+
+.timeline--entry {
+    position: relative;
+    background-color: transparent;
+}
+
+.timeline--entry__title {
+    color: white;
+    background-color: var(--shadow);
+    border-radius:10px 10px 0 0;
+    font-family: sans-serif;
+    font-weight: 10px;
+    font-size: 1rem;
+    padding: 1em;
+}
+
+.timeline--entry__title:before {
+    content: "";
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    position: absolute;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    left: -1em;
+    border-right: 10px solid var(--shadow);
+}
+
+.timeline--entry__detail {
+    background-color: var(--bars-light);
+    padding: 1em;
+    margin: 0;
+}
+
+.timeline--entry:before {
+    content: "";
+    font-family: sans-serif;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3em;
+    height: 3em;
+    background-color:var(--shadow);
+    border: 0.2em solid var(--bars);
+    border-radius: 50%;
+    position: absolute;
+    counter-increment: section;
+    content: counter(section);
+    text-shadow: 0 1px 0 var(--dark);
+    left: -4.5em;
+}
+
+@supports (display: grid) {
+    @media screen and (min-width: 992px) {
+        .timeline {
+            display: grid;
+            grid-gap: 4.75em;
+            grid-template-areas: ". entry1" "entry2 ." ". entry3" "entry4 ." ". entry5";
+        }
+
+        .timeline:before {
+            left: 49.5%;
+        }
+
+        .timeline--entry:nth-child(1) {
+            grid-area: entry1;
+        }
+
+        .timeline--entry:nth-child(2) {
+            grid-area: entry2;
+        }
+
+        .timeline--entry:nth-child(3) {
+            grid-area: entry3;
+        }
+
+        .timeline--entry:nth-child(4) {
+            grid-area: entry4;
+        }
+
+        .timeline--entry:nth-child(5) {
+            grid-area: entry5;
+        }
+
+        .timeline--entry:nth-of-type(odd):before {
+            left: -3.8em;
+        }
+
+        .timeline--entry:nth-of-type(even):not(:nth-of-type(odd)) .timeline--entry__title:before {
+            left: 100%;
+            border-left: 10px solid var(--shadow);
+            border-right: 0;
+        }
+
+        .timeline--entry:nth-of-type(even):before {
+            left: 103%;
+        }
+    }
+}
+
+/*Projects section*/
+.project-grid li {
+    line-height: normal;
+}
+
+.project-grid {
+    --auto-grid-min-size: 20rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
+    grid-gap: 1rem;
+}
+
+.our-webcoderskull {
+    background: #111;
+    border-radius: 10px;
+
+}
+
+.padding-lg {
+    display: block;
+    padding: 1rem;
+}
+
+/*
+    Buttons
+*/
+#fork {
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: #000;
+    text-decoration: none;
+    border: 1px solid #000;
+    padding: .5em .7em;
+    margin: 1%;
+    transition: color .5s;
+    overflow: hidden;
+}
+
+#fork:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 130%;
+    height: 100%;
+    background: #000;
+    z-index: -1;
+    transform-origin: 0 0;
+    transform: translateX(-100%) skewX(-45deg);
+    transition: transform .5s;
+}
+
+#fork:hover {
+    color: #fff;
+}
+
+#fork:hover:before {
+    transform: translateX(0) skewX(-45deg);
+}
+
+/*
+    Footer section
+*/
+.footer {
+    padding-bottom: 20px;
+}
+ 
+footer {
+    height: fit-content;
+    width: 100%;
+    border-radius: 0 40px 0 0;
+    background: var(--bars-light);
+    text-align: center;
+    color: var(--light);
+}
+
+.social-links {
+    position: fixed;
+    text-align: center;
+    background: var(--bars-light);
+    color: var(--light);
+    height: fit-content;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }
